@@ -22,14 +22,27 @@ CANDY.PapaSmurf.prototype.alloc = function() {
     this.speedX = -8;
     this.speedY = 0;
 
+    this.inPlace = false;
+    CANDY.BossUI.majBar(100);
+
     CANDY.Enemy.prototype.alloc.call(this);
 };
 
 CANDY.PapaSmurf.prototype.updateTransform = function() {
 
-    if(this.speedX < 0.1) {
+    if(this.speedX < -0.1) {
         this.speedX *= 0.96;
+    } else if(!this.inPlace) {
+        this.speedX = 0;
+        CANDY.BossUI.show();
+        this.inPlace = true;
     }
 
     CANDY.Enemy.prototype.updateTransform.call( this );
+};
+
+
+CANDY.PapaSmurf.prototype.touched = function(bullet) {
+    CANDY.Enemy.prototype.touched.call(this, bullet);
+    CANDY.BossUI.majBar(this.life);
 };

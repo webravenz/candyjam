@@ -5,10 +5,12 @@
         width : 1100,
         height : 800
     };
+
+    CANDY.BossUI.init();
     
 	// create a renderer instance and append the view 
 	var renderer = PIXI.autoDetectRenderer(CANDY.Config.width, CANDY.Config.height);
-    document.body.appendChild(renderer.view);
+    document.getElementById('game').appendChild(renderer.view);
     
 	var background, player, bulletsManager, enemiesManager, collisionManager = null;
     
