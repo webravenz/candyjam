@@ -25,6 +25,7 @@ CANDY.Enemy.prototype.alloc = function() {
 CANDY.Enemy.prototype.canRealloc = function() {
     this.visible = false;
     this.active = false;
+    if(this.poolName) this.parent[this.poolName+'Pool'].add(this);
 };
 
 CANDY.Enemy.prototype.updateTransform = function() {
@@ -44,6 +45,9 @@ CANDY.Enemy.prototype.updateTransform = function() {
             this.die();
         }
     }
+
+    this.position.x += this.speedX;
+    this.position.y += this.speedY;
 
     PIXI.MovieClip.prototype.updateTransform.call( this );
 };

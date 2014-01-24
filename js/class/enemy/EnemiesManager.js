@@ -3,7 +3,7 @@ CANDY.EnemiesManager = function() {
     
     this.enemies = [];
 
-    //this.createPool('Magic', 'magic', 30);
+    this.createPool('Magic', 'magic', 30);
 
     this.papaSmurf = new CANDY.PapaSmurf();
     this.enemies.push(this.papaSmurf);
@@ -22,19 +22,27 @@ CANDY.EnemiesManager.prototype.createPool = function(className, varName, number)
         this.addChild(e);
         this[varName].push(e);
         tmpEnemies.push(e);
+        this.enemies.push(e);
     }
     this[varName+'Pool'] = new CANDY.Pool(tmpEnemies);
 };
 
 CANDY.EnemiesManager.prototype.updateTransform = function() {
     
-    if(this.timerAttack <= 0) {
-        switch(this.currentLevel) {
-            case 1 :
+    switch(this.currentLevel) {
+        case 1 :
+
+            // check death
+            if(this.papaSmurf.dying) {
+                this.currentLevel = false;
+            }
+
+            // attack
+            if(this.timerAttack <= 0) {
                 this.papaSmurfAttack();
                 this.timerAttack = CANDY.Utils.randomBetween(60, 180);
-                break;
-        }
+            }
+            break;
     }
 
     this.timerAttack--;
@@ -67,5 +75,10 @@ CANDY.EnemiesManager.prototype.initLevel1 = function() {
 }
 
 CANDY.EnemiesManager.prototype.papaSmurfAttack = function() {
-
+    var nbEnemies = CANDY.Utils.randomBetween(3, 5);
+    while(nbEnemies--) {
+        this.magicPool.act(function(e, pool) {
+            e.alloc();
+        });
+    }
 }

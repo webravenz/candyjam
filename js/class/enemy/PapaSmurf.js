@@ -21,6 +21,7 @@ CANDY.PapaSmurf.prototype.alloc = function() {
     this.position.x = CANDY.Config.width + this.width / 2;
     this.position.y = CANDY.Config.height / 2;
     this.speedX = -8;
+    this.speedY = 0;
 
     CANDY.Enemy.prototype.alloc.call(this);
 };
@@ -28,7 +29,6 @@ CANDY.PapaSmurf.prototype.alloc = function() {
 CANDY.PapaSmurf.prototype.updateTransform = function() {
 
     if(this.speedX < 0.1) {
-        this.position.x += this.speedX;
         this.speedX *= 0.96;
     }
 
