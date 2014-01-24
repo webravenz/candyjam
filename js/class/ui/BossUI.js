@@ -1,0 +1,8 @@
+
+CANDY.BossUI = {
+  
+  init: function() {
+    
+  }
+
+}

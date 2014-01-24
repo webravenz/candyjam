@@ -9,7 +9,6 @@ CANDY.PapaSmurf = function() {
     
     this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, this.width, this.height);
     this.animationSpeed = 0.2;
-    this.life = 10;
 };
 
 CANDY.PapaSmurf.constructor = CANDY.PapaSmurf;
@@ -17,7 +16,7 @@ CANDY.PapaSmurf.constructor = CANDY.PapaSmurf;
 CANDY.PapaSmurf.prototype = Object.create( CANDY.Enemy.prototype );
 
 CANDY.PapaSmurf.prototype.alloc = function() {
-    this.life = 10;
+    this.life = 100;
     this.position.x = CANDY.Config.width + this.width / 2;
     this.position.y = CANDY.Config.height / 2;
     this.speedX = -8;

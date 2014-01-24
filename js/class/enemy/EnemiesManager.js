@@ -4,6 +4,7 @@ CANDY.EnemiesManager = function() {
     this.enemies = [];
 
     this.createPool('Magic', 'magic', 30);
+    this.createPool('Smurf', 'smurf', 10);
 
     this.papaSmurf = new CANDY.PapaSmurf();
     this.enemies.push(this.papaSmurf);
@@ -40,12 +41,19 @@ CANDY.EnemiesManager.prototype.updateTransform = function() {
             // attack
             if(this.timerAttack <= 0) {
                 this.papaSmurfAttack();
-                this.timerAttack = CANDY.Utils.randomBetween(60, 180);
+                this.timerAttack = CANDY.Utils.randomBetween(90, 180);
+            }
+
+            // smurfs
+            if(this.timerAppear <= 0) {
+                this.smurfAppear();
+                this.timerAppear = CANDY.Utils.randomBetween(0, 240);
             }
             break;
     }
 
     this.timerAttack--;
+    this.timerAppear--;
     
     PIXI.DisplayObjectContainer.prototype.updateTransform.call( this );
 }
@@ -71,14 +79,21 @@ CANDY.EnemiesManager.prototype.initLevel1 = function() {
     this.papaSmurf.alloc();
 
     this.timerAttack = 200;
+    this.timerAppear = 300;
     this.currentLevel = 1;
 }
 
 CANDY.EnemiesManager.prototype.papaSmurfAttack = function() {
-    var nbEnemies = CANDY.Utils.randomBetween(3, 5);
+    var nbEnemies = CANDY.Utils.randomBetween(2, 5);
     while(nbEnemies--) {
         this.magicPool.act(function(e, pool) {
             e.alloc();
         });
     }
+}
+
+CANDY.EnemiesManager.prototype.smurfAppear = function() {
+    this.smurfPool.act(function(e, pool) {
+        e.alloc();
+    });
 }

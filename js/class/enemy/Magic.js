@@ -12,7 +12,7 @@ CANDY.Magic.constructor = CANDY.Magic;
 CANDY.Magic.prototype = Object.create( CANDY.Enemy.prototype );
 
 CANDY.Magic.prototype.alloc = function() {
-    this.life = 1;
+    this.life = 100;
     this.position.x = this.parent.papaSmurf.position.x - 50;
     this.position.y = this.parent.papaSmurf.position.y - 50;
     this.speedX = CANDY.Utils.randomBetween(-4, -8);
@@ -25,7 +25,6 @@ CANDY.Magic.prototype.updateTransform = function() {
 
     if(this.active) {
         if(this.position.x < -50) {
-            console.log(this.position.x);
             this.canRealloc();
         }
     }

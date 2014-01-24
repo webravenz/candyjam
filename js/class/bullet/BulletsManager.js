@@ -37,8 +37,8 @@ CANDY.BulletsManager.prototype.shoot = function() {
     
     this.pool.act(function(b, pool) {
         b.alloc();
-        b.position.x = scope.ship.position.x + scope.ship.width - b.speedX - 25;
-        b.position.y = scope.ship.position.y + scope.ship.height / 2 + 28;
+        b.position.x = scope.ship.position.x + scope.ship.width - b.speedX - 5;
+        b.position.y = scope.ship.position.y + scope.ship.height / 2 + 35;
         scope.ship.speedX -= 2;
         scope.ship.speedY *= 0.3;
     });

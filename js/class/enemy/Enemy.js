@@ -7,6 +7,10 @@ CANDY.Enemy = function(textures) {
     
     this.visible = false;
     this.active = false;
+
+    if(!this.hitOffset) {
+        this.hitOffset = {x: 0, y: 0};
+    }
 };
 
 CANDY.Enemy.constructor = CANDY.Enemy;
@@ -30,8 +34,10 @@ CANDY.Enemy.prototype.canRealloc = function() {
 
 CANDY.Enemy.prototype.updateTransform = function() {
     //we update the hitArea
-    this.hitArea.x = this.position.x - this.width / 2;
-    this.hitArea.y = this.position.y - this.height / 2;
+    if(this.hitArea) {
+        this.hitArea.x = this.position.x + this.hitOffset.x - this.width / 2;
+        this.hitArea.y = this.position.y + this.hitOffset.y - this.height / 2;
+    }
 
     if(this.dying) {
         this.alpha -= 0.1;

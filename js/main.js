@@ -2,8 +2,8 @@
     // create an new instance of a pixi stage
 	var stage = new PIXI.Stage(0x000000);
 	CANDY.Config = {
-        width : Math.min(1100, window.innerWidth),
-        height : Math.min(800, window.innerHeight)
+        width : 1100,
+        height : 800
     };
     
 	// create a renderer instance and append the view 
@@ -13,7 +13,7 @@
 	var background, player, bulletsManager, enemiesManager, collisionManager = null;
     
     // load all needed assets
-    var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png', 'img/papasmurf.png']);
+    var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png', 'img/papasmurf.png', 'img/smurf.png']);
     loader.onComplete = onAssetsLoaded;
 	loader.load();
     
@@ -22,13 +22,14 @@
         background = PIXI.Sprite.fromImage('img/background.png');
         stage.addChild(background);
         
-        // create player object
-        player = new CANDY.Player;
-        stage.addChild(player);
 
         // ennemies
         enemiesManager = new CANDY.EnemiesManager();
         stage.addChild(enemiesManager);
+        
+        // create player object
+        player = new CANDY.Player;
+        stage.addChild(player);
         
         //create the bullet Manager
         bulletsManager = new CANDY.BulletsManager(player);

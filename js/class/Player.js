@@ -21,8 +21,9 @@ CANDY.Player = function() {
     // life
     this.life = 4;
     
-    this.animationSpeed = 0.15;
-    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, this.width, this.height);
+    this.animationSpeed = 0.1;
+    this.hitArea = new CANDY.Rectangle(0, 0, 85, 85);
+    this.hitOffset = {x: 50, y: 70};
 }
 
 CANDY.Player.constructor = CANDY.Player;
@@ -87,8 +88,8 @@ CANDY.Player.prototype.updateTransform = function() {
     this.position.x = CANDY.Utils.boundary(this.position.x, this.MIN_X, this.MAX_X);
     
     //we update the hitArea
-    this.hitArea.x = this.position.x;
-    this.hitArea.y = this.position.y;
+    this.hitArea.x = this.position.x + this.hitOffset.x;
+    this.hitArea.y = this.position.y + this.hitOffset.y;
     
     PIXI.MovieClip.prototype.updateTransform.call( this ); 
 }
