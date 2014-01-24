@@ -15,7 +15,7 @@ CANDY.Player = function() {
     this.MAX_SPEED = 6;
     this.MIN_X = 0;
     this.MIN_Y = 0;
-    this.MAX_X = CANDY.Config.width - this.width;
+    this.MAX_X = (CANDY.Config.width - this.width) * 0.6;
     this.MAX_Y = CANDY.Config.height - this.height;
     
     // life

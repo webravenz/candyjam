@@ -2,8 +2,8 @@
     // create an new instance of a pixi stage
 	var stage = new PIXI.Stage(0x000000);
 	CANDY.Config = {
-        width : Math.min(900, window.innerWidth),
-        height : Math.min(600, window.innerHeight)
+        width : Math.min(1100, window.innerWidth),
+        height : Math.min(800, window.innerHeight)
     };
     
 	// create a renderer instance and append the view 
