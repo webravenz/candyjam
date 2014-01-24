@@ -10,14 +10,17 @@
 	var renderer = PIXI.autoDetectRenderer(CANDY.Config.width, CANDY.Config.height);
     document.body.appendChild(renderer.view);
     
-	var player, bulletsManager, collisionManager = null;
+	var background, player, bulletsManager, collisionManager = null;
     
     // load all needed assets
-    var loader = new PIXI.AssetLoader([]);
+    var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png']);
     loader.onComplete = onAssetsLoaded;
 	loader.load();
     
     function onAssetsLoaded() {
+
+        background = PIXI.Sprite.fromImage('img/background.png');
+        stage.addChild(background);
         
         // create player object
         player = new CANDY.Player;

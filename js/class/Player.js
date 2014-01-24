@@ -1,7 +1,7 @@
 
 CANDY.Player = function() {
     
-    var textures = CANDY.SpriteSheetTextures.getArray('f', '.png', 4);
+    var textures = CANDY.SpriteSheetTextures.getArray('player', '.png', 4);
     
     PIXI.MovieClip.call( this, textures );
     
@@ -21,10 +21,8 @@ CANDY.Player = function() {
     // life
     this.life = 4;
     
-    this.animationSpeed = 0.2;
+    this.animationSpeed = 0.15;
     this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, this.width, this.height);
-    
-    this.play();
 }
 
 CANDY.Player.constructor = CANDY.Player;
@@ -71,9 +69,18 @@ CANDY.Player.prototype.updateTransform = function() {
     
     // update speed and position
     this.speedY = CANDY.Utils.boundary(this.speedY, -this.MAX_SPEED, this.MAX_SPEED);
+    if(Math.abs(this.speedY) < 0.3) this.speedY = 0;
     this.position.y += this.speedY;
     this.speedX = CANDY.Utils.boundary(this.speedX, -this.MAX_SPEED, this.MAX_SPEED);
+    if(Math.abs(this.speedX) < 0.3) this.speedX = 0;
     this.position.x += this.speedX;
+
+    // update anim
+    if(this.speedY != 0 || this.speedX != 0) {
+        this.play();
+    } else {
+        this.gotoAndStop(0);
+    }
     
     // prevent ship to leave game screen
     this.position.y = CANDY.Utils.boundary(this.position.y, this.MIN_Y, this.MAX_Y);

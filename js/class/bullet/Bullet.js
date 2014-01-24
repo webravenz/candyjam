@@ -6,9 +6,8 @@ CANDY.Bullet = function() {
     //this.anchor.x = this.anchor.y = 0.5;
     
     this.visible = false;
-    this.SPEED = 8;
     
-    this.damage = 0.5;
+    this.damage = 1;
 }
 
 CANDY.Bullet.constructor = CANDY.Bullet;
@@ -16,6 +15,8 @@ CANDY.Bullet.constructor = CANDY.Bullet;
 CANDY.Bullet.prototype = Object.create( PIXI.Sprite.prototype );
 
 CANDY.Bullet.prototype.alloc = function() {
+    this.speedX = CANDY.Utils.randomBetween(10, 12);
+    this.speedY = CANDY.Utils.randomBetween(-0.5, 0.5);
     this.visible = true;
 };
 CANDY.Bullet.prototype.canRealloc = function() {
@@ -24,7 +25,8 @@ CANDY.Bullet.prototype.canRealloc = function() {
 };
 CANDY.Bullet.prototype.updateTransform = function() {
     if(this.visible)  {
-        this.position.x += this.SPEED;
+        this.position.x += this.speedX;
+        this.position.y += this.speedY;
         
         if(this.position.x > CANDY.Config.width) {
             this.canRealloc();

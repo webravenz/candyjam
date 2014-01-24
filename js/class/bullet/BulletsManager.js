@@ -25,7 +25,7 @@ CANDY.BulletsManager.prototype = Object.create( PIXI.DisplayObjectContainer.prot
 CANDY.BulletsManager.prototype.updateTransform = function() {
     this.shootTimer--;
     
-    if(this.shootTimer <= 0 && (CANDY.Controls.pressed(CANDY.Controls.S) || CANDY.Controls.touchDevice) && this.ship.visible) {
+    if(this.shootTimer <= 0 && (CANDY.Controls.pressed(CANDY.Controls.S))) {
         this.shoot();
     }
     
@@ -37,8 +37,10 @@ CANDY.BulletsManager.prototype.shoot = function() {
     
     this.pool.act(function(b, pool) {
         b.alloc();
-        b.position.x = scope.ship.position.x + scope.ship.width - b.SPEED;
-        b.position.y = scope.ship.position.y + scope.ship.height / 2;
+        b.position.x = scope.ship.position.x + scope.ship.width - b.speedX;
+        b.position.y = scope.ship.position.y + scope.ship.height / 2 + 28;
+        scope.ship.speedX -= 2;
+        scope.ship.speedY *= 0.3;
     });
     
     this.shootTimer = this.SHOOT_DELAY;

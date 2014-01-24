@@ -1,0 +1,44 @@
+{"frames": {
+
+"player1.png":
+{
+	"frame": {"x":2,"y":2,"w":81,"h":138},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":21,"y":3,"w":81,"h":138},
+	"sourceSize": {"w":125,"h":150}
+},
+"player2.png":
+{
+	"frame": {"x":85,"y":2,"w":81,"h":136},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":21,"y":5,"w":81,"h":136},
+	"sourceSize": {"w":125,"h":150}
+},
+"player3.png":
+{
+	"frame": {"x":2,"y":2,"w":81,"h":138},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":21,"y":3,"w":81,"h":138},
+	"sourceSize": {"w":125,"h":150}
+},
+"player4.png":
+{
+	"frame": {"x":168,"y":2,"w":81,"h":134},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":21,"y":6,"w":81,"h":134},
+	"sourceSize": {"w":125,"h":150}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "player.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:8adeaa7e30e14f03a30326df0fea15ad$"
+}
+}

@@ -14,7 +14,7 @@ CANDY.SpriteSheetTextures = {
         var textures = [],
             i = count,
             j = start;
-        
+            
         while(i--) {
             textures.push(PIXI.Texture.fromFrame(name + j + ext));
             j++;
