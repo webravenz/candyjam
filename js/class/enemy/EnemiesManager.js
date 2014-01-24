@@ -1,40 +1,43 @@
 CANDY.EnemiesManager = function() {
     PIXI.DisplayObjectContainer.call( this );
     
-    var totalEnemies = 20;
     this.enemies = [];
-    var tmpEnemies = [];
-    while(totalEnemies--) {
-        var e = new CANDY.Enemy();
-        e.position.x = CANDY.Config.width + 200;
-        this.addChild(e);
-        //we use two different variable
-        //this.enemies will keep all the enemis
-        //tmpEnemies is only used to create the pool
-        //if we use the same variable, the pool only get a reference to this.enemies and so modifie our array
-        this.enemies.push(e);
-        tmpEnemies.push(e);
-    }
-    this.pool = new CANDY.Pool(tmpEnemies);
-    
-    
-    this.MIN_BETWEEN_WAVE = 440;
-    this.MAX_BETWEEN_WAVE = 540;
-    this.COEFF_DISPERSSION_X = 0.5;
-    
-    this.nbFrameBeforeNextWave = CANDY.Utils.randomBetween(30, 60);
+
+    //this.createPool('Magic', 'magic', 30);
+
+    this.papaSmurf = new CANDY.PapaSmurf();
+    this.enemies.push(this.papaSmurf);
+
+    this.currentLevel = false;
 }
 
 CANDY.EnemiesManager.constructor = CANDY.EnemiesManager;
 CANDY.EnemiesManager.prototype = Object.create( PIXI.DisplayObjectContainer.prototype );
 
+CANDY.EnemiesManager.prototype.createPool = function(className, varName, number) {
+    var tmpEnemies = [];
+    this[varName] = [];
+    while(number--) {
+        var e = new CANDY[className]();
+        this.addChild(e);
+        this[varName].push(e);
+        tmpEnemies.push(e);
+    }
+    this[varName+'Pool'] = new CANDY.Pool(tmpEnemies);
+};
 
 CANDY.EnemiesManager.prototype.updateTransform = function() {
-    this.nbFrameBeforeNextWave--;
     
-    if(this.nbFrameBeforeNextWave === 0) {
-        this.newWave();
+    if(this.timerAttack <= 0) {
+        switch(this.currentLevel) {
+            case 1 :
+                this.papaSmurfAttack();
+                this.timerAttack = CANDY.Utils.randomBetween(60, 180);
+                break;
+        }
     }
+
+    this.timerAttack--;
     
     PIXI.DisplayObjectContainer.prototype.updateTransform.call( this );
 }
@@ -43,7 +46,6 @@ CANDY.EnemiesManager.prototype.newWave = function() {
     var scope = this;
     
     var nbEnemies = CANDY.Utils.randomBetween(5, 15);
-    console.log('WAVE');
     while(nbEnemies--) {
         this.pool.act(function(e, pool) {
             e.alloc();
@@ -54,3 +56,16 @@ CANDY.EnemiesManager.prototype.newWave = function() {
     
     this.nbFrameBeforeNextWave = CANDY.Utils.randomBetween(this.MIN_BETWEEN_WAVE, this.MAX_BETWEEN_WAVE);
 };
+
+
+CANDY.EnemiesManager.prototype.initLevel1 = function() {
+    this.addChild(this.papaSmurf);
+    this.papaSmurf.alloc();
+
+    this.timerAttack = 200;
+    this.currentLevel = 1;
+}
+
+CANDY.EnemiesManager.prototype.papaSmurfAttack = function() {
+
+}

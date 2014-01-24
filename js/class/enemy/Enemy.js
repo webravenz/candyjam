@@ -1,60 +1,63 @@
 
-CANDY.Enemy = function() {
-    
-    var textures = CANDY.SpriteSheetTextures.getArray('e_f', '.png', 6);
+CANDY.Enemy = function(textures) {
     
     PIXI.MovieClip.call( this, textures );
-    
-    //this.anchor.x = this.anchor.y = 0.5;
+
+    this.anchor.x = this.anchor.y = 0.5;
     
     this.visible = false;
-    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, this.width, this.height);
-    this.SPEED = 1;
-    this.animationSpeed = 0.2;
-    this.startLife = 100;
-    this.life = 100;
+    this.active = false;
 };
 
 CANDY.Enemy.constructor = CANDY.Enemy;
 // Enemy object extend PIXI Movieclip object
 CANDY.Enemy.prototype = Object.create( PIXI.MovieClip.prototype );
 
-/**
- * override updateTransform method, called each frame
- */
 CANDY.Enemy.prototype.alloc = function() {
-    this.visible = true;
-    this.life = 100;
     this.alpha = 1;
-    this.play();
+    this.visible = true;
+    this.active = true;
+    this.dying = false;
+    this.scale.x = this.scale.y = 1;
+    this.rotation = 0;
 };
+
 CANDY.Enemy.prototype.canRealloc = function() {
-    this.stop();
     this.visible = false;
-    this.parent.pool.add(this);
+    this.active = false;
 };
+
 CANDY.Enemy.prototype.updateTransform = function() {
-    if(this.playing)  {
-        this.position.x = this.position.x - this.SPEED;  
-        
-        if(this.position.x + this.width < 0) {
-            //this.dispatchEvent('LOOSE_A_LIFE');
-            this.canRealloc();
+    //we update the hitArea
+    this.hitArea.x = this.position.x - this.width / 2;
+    this.hitArea.y = this.position.y - this.height / 2;
+
+    if(this.dying) {
+        this.alpha -= 0.1;
+        this.speedX *= 0.5;
+        this.speedY *= 0.5;
+        this.scale.x -= 0.08;
+        this.scale.y -= 0.08;
+        this.rotation += 0.1;
+
+        if(this.alpha <= 0) {
+            this.die();
         }
-        
-        //we update the hitArea
-        this.hitArea.x = this.position.x;
-        this.hitArea.y = this.position.y;
     }
+
     PIXI.MovieClip.prototype.updateTransform.call( this );
 };
 
 CANDY.Enemy.prototype.touched = function(bullet) {
-    this.life = this.life - (this.startLife* bullet.damage);
-    console.log('TOUCHED '+this.life);
-    this.alpha = this.life / 100;
-    if(this.life  <= 0) {
-        this.canRealloc();
+    this.life = this.life - bullet.damage;
+    if(this.life <= 0) {
+        this.active = false;
+        this.dying = true;
     }
-    
 };
+
+CANDY.Enemy.prototype.die = function() {
+    this.dying = false;
+    this.canRealloc();
+};
+

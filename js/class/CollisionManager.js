@@ -13,7 +13,7 @@ CANDY.CollisionManager.prototype.checkCollision= function() {
         bM =this.bulletsManager.bullets,
         i = eM.length;
     while(i--) {
-        if(eM[i].visible) {
+        if(eM[i].active) {
             var a = bM.length;
             while(a--) { //test with bullet
                 if(bM[a].visible) {

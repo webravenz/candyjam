@@ -13,7 +13,7 @@ CANDY.BulletsManager = function(ship) {
     this.pool = new CANDY.Pool(tmpBullets);
     
     
-    this.SHOOT_DELAY = 10;
+    this.SHOOT_DELAY = 15;
     this.shootTimer = 0;
     this.ship = ship;
 }
