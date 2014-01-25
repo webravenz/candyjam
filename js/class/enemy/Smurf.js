@@ -13,7 +13,7 @@ CANDY.Smurf.prototype = Object.create( CANDY.Enemy.prototype );
 
 CANDY.Smurf.prototype.alloc = function() {
     this.life = 3;
-    this.position.x = CANDY.Config.width + 100;
+    this.position.x = CANDY.Config.width + 100 + CANDY.Utils.randomBetween(0, 200);
     this.position.y = CANDY.Utils.randomBetween(this.height / 2, CANDY.Config.height - this.height / 2);
     this.speedX = CANDY.Utils.randomBetween(-3, -5);
     this.speedY = 0;
