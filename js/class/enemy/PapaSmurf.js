@@ -16,6 +16,9 @@ CANDY.PapaSmurf.constructor = CANDY.PapaSmurf;
 CANDY.PapaSmurf.prototype = Object.create( CANDY.Enemy.prototype );
 
 CANDY.PapaSmurf.prototype.alloc = function() {
+
+    CANDY.Enemy.prototype.alloc.call(this);
+
     this.life = 100;
     this.position.x = CANDY.Config.width + this.width / 2;
     this.position.y = CANDY.Config.height / 2;
@@ -25,8 +28,6 @@ CANDY.PapaSmurf.prototype.alloc = function() {
     this.canMove = false;
 
     CANDY.BossUI.majBar(100);
-
-    CANDY.Enemy.prototype.alloc.call(this);
 };
 
 CANDY.PapaSmurf.prototype.updateTransform = function() {

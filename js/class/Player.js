@@ -6,7 +6,7 @@ CANDY.Player = function() {
     PIXI.MovieClip.call( this, textures );
     
     this.position.x = 100;
-    this.position.y = 200;
+    this.position.y = 340;
     //this.anchor.x = this.anchor.y = 0.5;
     
     // moving vars
@@ -17,6 +17,8 @@ CANDY.Player = function() {
     this.MIN_Y = 0;
     this.MAX_X = (CANDY.Config.width - this.width) * 0.6;
     this.MAX_Y = CANDY.Config.height - this.height;
+
+    this.canShoot = false;
     
     // life
     this.life = 4;

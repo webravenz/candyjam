@@ -15,7 +15,7 @@
 	var background, player, bulletsManager, enemiesManager, collisionManager = null;
     
     // load all needed assets
-    var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png', 'img/papasmurf.png', 'img/smurf.png']);
+    var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png', 'img/papasmurf.png', 'img/smurf.png', 'img/apple.png', 'img/skittle.png']);
     loader.onComplete = onAssetsLoaded;
 	loader.load();
     
@@ -24,13 +24,13 @@
         background = PIXI.Sprite.fromImage('img/background.png');
         stage.addChild(background);
         
-
-        // ennemies
-        enemiesManager = new CANDY.EnemiesManager();
-        stage.addChild(enemiesManager);
-        
         // create player object
         player = new CANDY.Player;
+
+        // ennemies
+        enemiesManager = new CANDY.EnemiesManager(player);
+        stage.addChild(enemiesManager);
+        
         stage.addChild(player);
         
         //create the bullet Manager
