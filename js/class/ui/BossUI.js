@@ -3,7 +3,7 @@ CANDY.BossUI = {
   
   init: function() {
     this.el = document.getElementById('boss-ui');
-    this.bar = document.querySelectorAll('#boss-ui .bar')[0];
+    this.bar = document.querySelectorAll('#boss-ui .bar > div')[0];
     this.name = document.querySelectorAll('#boss-ui .name')[0];
     this.bubble = document.querySelectorAll('#boss-ui .bubble')[0];
   },
@@ -30,7 +30,7 @@ CANDY.BossUI = {
   },
 
   majBar: function(percent) {
-    this.bar.style.width = percent+'%'
+    this.bar.style.width = percent+'%';
   }
 
-}
+};

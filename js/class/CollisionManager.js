@@ -1,7 +1,7 @@
-CANDY.CollisionManager = function(ship, enemiesManager, bulletsManager) {
+CANDY.CollisionManager = function(player, enemiesManager, bulletsManager) {
     PIXI.EventTarget.call( this );
     
-    this.ship = ship;
+    this.player = player;
     this.enemiesManager = enemiesManager;
     this.bulletsManager = bulletsManager;
 };
@@ -25,9 +25,9 @@ CANDY.CollisionManager.prototype.checkCollision= function() {
                     }
                 }
             }
-            if(eM[i].hitArea && this.ship.visible && eM[i].hitArea.intersectWith(this.ship.hitArea)) {
+            if(eM[i].hitArea && this.player.visible && this.player.alpha == 1 && eM[i].hitArea.intersectWith(this.player.hitArea)) {
                 eM[i].canRealloc();
-                this.ship.hitEnnemy();
+                this.player.hitEnnemy();
                 this.dispatchEvent('TOUCH_ENEMY');
             }
             

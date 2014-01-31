@@ -16,7 +16,7 @@ CANDY.EnemiesManager = function(player) {
     this.enemies.push(this.apple);
 
     this.currentLevel = false;
-}
+};
 
 CANDY.EnemiesManager.constructor = CANDY.EnemiesManager;
 CANDY.EnemiesManager.prototype = Object.create( PIXI.DisplayObjectContainer.prototype );
@@ -108,7 +108,7 @@ CANDY.EnemiesManager.prototype.updateTransform = function() {
     this.timerAppear--;
     
     PIXI.DisplayObjectContainer.prototype.updateTransform.call( this );
-}
+};
 
 CANDY.EnemiesManager.prototype.initLevel1 = function() {
     var scope = this;
@@ -140,7 +140,7 @@ CANDY.EnemiesManager.prototype.initLevel1 = function() {
         scope.papaSmurf.canMove = true;
         scope.player.canShoot = true;
     }, 6000);
-}
+};
 
 CANDY.EnemiesManager.prototype.papaSmurfAttack = function() {
     var nbEnemies = CANDY.Utils.randomBetween(2, 5);
@@ -149,7 +149,7 @@ CANDY.EnemiesManager.prototype.papaSmurfAttack = function() {
             e.alloc();
         });
     }
-}
+};
 
 CANDY.EnemiesManager.prototype.smurfWave = function() {
     var nbEnemies = CANDY.Utils.randomBetween(4, 8);
@@ -158,7 +158,7 @@ CANDY.EnemiesManager.prototype.smurfWave = function() {
             e.alloc();
         });
     }
-}
+};
 
 CANDY.EnemiesManager.prototype.initLevel2 = function() {
     var scope = this;
@@ -188,7 +188,7 @@ CANDY.EnemiesManager.prototype.initLevel2 = function() {
         CANDY.BossUI.hideBubble();
         scope.player.canShoot = true;
     }, 6000);
-}
+};
 
 CANDY.EnemiesManager.prototype.skittleWave = function() {
     var nbEnemies = CANDY.Utils.randomBetween(3, 6);
@@ -197,4 +197,11 @@ CANDY.EnemiesManager.prototype.skittleWave = function() {
             e.alloc();
         });
     }
-}
+};
+
+CANDY.EnemiesManager.prototype.removeAll = function() {
+  this.currentLevel = false;
+  for(var i = 0; i < this.enemies.length; i++) {
+    if(this.enemies[i].active) this.enemies[i].canRealloc();
+  }
+};
