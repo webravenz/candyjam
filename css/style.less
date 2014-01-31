@@ -173,7 +173,6 @@ body, html {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #101010;
   opacity: 0;
   visibility: hidden;
   .scale(1.1);
@@ -187,6 +186,10 @@ body, html {
   .scale(1);
   .transition(all 1s ease 1s);
 } 
+
+#game-over {
+  background: #101010;
+}
 
 #game-over h2 {
   padding-top: 60px;
@@ -254,11 +257,7 @@ body, html {
   background: lighten(@btnColor, 10%);
 }
 
-#home {
-  background: none;
-}
-
-#home .play {
+.play.btn {
   position: absolute;
   bottom: 60px;
   left: 50%;
@@ -302,4 +301,23 @@ body, html {
 #home .controls.shoot {
   background-image: url(../img/s.png);
   margin-left: 250px;
+}
+
+#story > div {
+  margin: 80px;
+  background: #fff8dd;
+  padding: 60px;
+  padding-top: 30px;
+  border-radius: 60px;
+}
+
+#story > div p {
+  font-size: 24px;
+  color: #c99d72;
+  padding-top: 30px;
+  line-height: 2;
+}
+
+#story > div p b {
+  color: #ad5601;
 }

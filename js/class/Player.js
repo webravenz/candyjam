@@ -33,7 +33,7 @@ CANDY.Player.prototype.init = function() {
   this.canShoot = false;
   
   // life
-  this.life = this.maxLife = 1; // TODO repasser a 10
+  this.life = this.maxLife = 10;
   this.hitTimer = 0;
   
   this.visible = true;

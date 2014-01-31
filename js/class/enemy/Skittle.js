@@ -1,11 +1,12 @@
 
 CANDY.Skittle = function() {
     
-    CANDY.Enemy.call(this, [PIXI.Texture.fromImage('img/skittle.png')]);
+    CANDY.Enemy.call(this, [PIXI.Texture.fromImage('img/skittle'+CANDY.Utils.randomBetween(1, 4)+'.png')]);
     
-    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, this.width, this.height);
+    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, 53, 53);
     this.animationSpeed = 0.2;
     this.poolName = 'skittle';
+    this.hitOffset = {x: 9, y: 0};
 };
 
 CANDY.Skittle.constructor = CANDY.Skittle;

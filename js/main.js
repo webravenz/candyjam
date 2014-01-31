@@ -10,6 +10,8 @@
   var paused = false;
   var home = document.getElementById('home');
   var playBtn = document.querySelectorAll('#home .play')[0];
+  var story = document.getElementById('story');
+  var playBtnStory = document.querySelectorAll('#story .play')[0];
   var gameOver = document.getElementById('game-over');
   var retryBtn = document.querySelectorAll('#game-over .retry')[0];
 
@@ -23,7 +25,7 @@
 	var background, player, bulletsManager, enemiesManager, collisionManager = null;
     
   // load all needed assets
-  var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png', 'img/papasmurf.png', 'img/smurf.png', 'img/apple.png', 'img/skittle.png']);
+  var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png', 'img/papasmurf.png', 'img/smurf.png', 'img/apple.png', 'img/skittle1.png', 'img/skittle2.png', 'img/skittle3.png', 'img/skittle4.png']);
   loader.onComplete = onAssetsLoaded;
 	loader.load();
     
@@ -53,12 +55,28 @@
     CANDY.Controls.start();
     player.canShoot = true;
     
+    home.classList.add('show');
+    
     playBtn.addEventListener('click', function() {
       playBtn.removeEventListener('click');
       home.classList.remove('show');
       CANDY.Controls.stop();
       player.canShoot = false;
-      initGame();
+      initStory();
+    });
+    
+  }
+  
+  function initStory() {
+    
+    story.classList.add('show');
+    
+    playBtnStory.addEventListener('click', function() {
+      playBtnStory.removeEventListener('click');
+      story.classList.remove('show');
+      setTimeout(function() {
+        initGame();
+      }, 1000);
     });
     
   }
@@ -72,7 +90,7 @@
     CANDY.PlayerUI.show();
     
     setTimeout(function() {
-      enemiesManager.initLevel1();
+      enemiesManager.initLevel2();
     }, 3000);
     
   }

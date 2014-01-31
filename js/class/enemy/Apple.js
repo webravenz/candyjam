@@ -7,8 +7,9 @@ CANDY.Apple = function() {
 
     CANDY.Enemy.call(this, [PIXI.Texture.fromImage('img/apple.png')]);
     
-    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, this.width, this.height);
+    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, 220, 210);
     this.animationSpeed = 0.2;
+    this.hitOffset = {x: 40, y: 80};
 };
 
 CANDY.Apple.constructor = CANDY.Apple;

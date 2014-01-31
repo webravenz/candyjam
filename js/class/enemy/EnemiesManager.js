@@ -76,7 +76,7 @@ CANDY.EnemiesManager.prototype.updateTransform = function() {
             // attack
             if(this.timerAttack <= 0) {
                 this.apple.jump();
-                this.timerAttack = CANDY.Utils.randomBetween(120, 300);
+                this.timerAttack = CANDY.Utils.randomBetween(180, 360);
             }
 
             // wave
@@ -191,7 +191,7 @@ CANDY.EnemiesManager.prototype.initLevel2 = function() {
 };
 
 CANDY.EnemiesManager.prototype.skittleWave = function() {
-    var nbEnemies = CANDY.Utils.randomBetween(3, 6);
+    var nbEnemies = CANDY.Utils.randomBetween(3, 5);
     while(nbEnemies--) {
         this.skittlePool.act(function(e, pool) {
             e.alloc();
