@@ -5,15 +5,6 @@ CANDY.EnemiesManager = function(player) {
     
     this.enemies = [];
 
-    this.createPool('Magic', 'magic', 30);
-    this.createPool('Smurf', 'smurf', 20);
-    this.createPool('Skittle', 'skittle', 30);
-
-    this.papaSmurf = new CANDY.PapaSmurf();
-    this.enemies.push(this.papaSmurf);
-
-    this.apple = new CANDY.Apple();
-    this.enemies.push(this.apple);
 
     this.currentLevel = false;
 };
@@ -21,12 +12,34 @@ CANDY.EnemiesManager = function(player) {
 CANDY.EnemiesManager.constructor = CANDY.EnemiesManager;
 CANDY.EnemiesManager.prototype = Object.create( PIXI.DisplayObjectContainer.prototype );
 
+
+CANDY.EnemiesManager.prototype.init = function() {
+  this.createPool('Magic', 'magic', 30);
+  this.createPool('Smurf', 'smurf', 20);
+  this.createPool('Skittle', 'skittle', 30);
+  this.createPool('CandyShadow', 'candyShadow', 30);
+  this.createPool('Candy', 'candy', 30);
+
+  this.papaSmurf = new CANDY.PapaSmurf();
+  this.enemies.push(this.papaSmurf);
+
+  this.apple = new CANDY.Apple();
+  this.enemies.push(this.apple);
+
+  this.king = new CANDY.King();
+  this.enemies.push(this.king);
+};
+
 CANDY.EnemiesManager.prototype.createPool = function(className, varName, number) {
     var tmpEnemies = [];
     this[varName] = [];
     while(number--) {
         var e = new CANDY[className]();
-        this.addChild(e);
+        if(className == 'Candy') {
+          this.stage.addChild(e);
+        } else {
+          this.addChild(e);
+        }
         this[varName].push(e);
         tmpEnemies.push(e);
         this.enemies.push(e);
@@ -100,6 +113,33 @@ CANDY.EnemiesManager.prototype.updateTransform = function() {
                     //scope.initLevel2();
                 }, 5000);
             }
+
+            break;
+
+        case 3 :
+            // --------------------- level 3 actions ----------------------
+
+            // attack
+            if(this.timerAttack <= 0) {
+                this.candyDrop();
+                this.timerAttack = CANDY.Utils.randomBetween(10, 30);
+            }
+
+            // check death
+//            if(this.apple.dying) {
+//                this.currentLevel = false;
+//                CANDY.BossUI.hide();
+//                // destroy skittles
+//                for(var i = 0; i < this.skittle.length; i++) {
+//                    if(this.skittle[i].active) this.skittle[i].touched({damage: 100});
+//                }
+//
+//                this.player.canShoot = false;
+//
+//                setTimeout(function() {
+//                    //scope.initLevel2();
+//                }, 5000);
+//            }
 
             break;
     }
@@ -197,6 +237,46 @@ CANDY.EnemiesManager.prototype.skittleWave = function() {
             e.alloc();
         });
     }
+};
+
+CANDY.EnemiesManager.prototype.initLevel3 = function() {
+    var scope = this;
+
+    scope.player.canShoot = false;
+
+    this.addChild(this.king);
+    this.king.alloc();
+
+    this.timerAttack = 420;
+    this.currentLevel = 3;
+
+    // show boss UI
+    setTimeout(function() {
+        CANDY.BossUI.setName('The King');
+        CANDY.BossUI.show();
+    }, 2000);
+
+    
+    // show bubble
+    setTimeout(function() {
+        CANDY.BossUI.showBubble('Candies ... Candies ... CANDIES everywhere !');
+    }, 3000);
+
+    // hide bubble
+    setTimeout(function() {
+        CANDY.BossUI.hideBubble();
+        scope.player.canShoot = true;
+    }, 6000);
+};
+
+CANDY.EnemiesManager.prototype.candyDrop = function() {
+  var scope = this;
+  this.candyShadowPool.act(function(e, pool) {
+    e.alloc();
+    scope.candyPool.act(function(e2, pool2) {
+      e2.alloc(e);
+    });
+  });
 };
 
 CANDY.EnemiesManager.prototype.removeAll = function() {

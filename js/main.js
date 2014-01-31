@@ -25,7 +25,7 @@
 	var background, player, bulletsManager, enemiesManager, collisionManager = null;
     
   // load all needed assets
-  var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png', 'img/papasmurf.png', 'img/smurf.png', 'img/apple.png', 'img/skittle1.png', 'img/skittle2.png', 'img/skittle3.png', 'img/skittle4.png']);
+  var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png', 'img/papasmurf.png', 'img/smurf.png', 'img/apple.png', 'img/skittle1.png', 'img/skittle2.png', 'img/skittle3.png', 'img/skittle4.png', 'img/candy-shadow.png', 'img/candy.png']);
   loader.onComplete = onAssetsLoaded;
 	loader.load();
     
@@ -39,10 +39,13 @@
 
     // ennemies
     enemiesManager = new CANDY.EnemiesManager(player);
+    CANDY.enemiesManager = enemiesManager;
     stage.addChild(enemiesManager);
 
     stage.addChild(player);
     player.init();
+    
+    enemiesManager.init();
 
     //create the bullet Manager
     bulletsManager = new CANDY.BulletsManager(player);
@@ -90,7 +93,7 @@
     CANDY.PlayerUI.show();
     
     setTimeout(function() {
-      enemiesManager.initLevel2();
+      enemiesManager.initLevel3();
     }, 3000);
     
   }

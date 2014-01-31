@@ -20,7 +20,7 @@ CANDY.Apple.prototype.alloc = function() {
 
     CANDY.Enemy.prototype.alloc.call(this);
 
-    this.life = 150;
+    this.life = 125;
     this.position.x = CANDY.Config.width + this.width / 2;
     this.position.y = CANDY.Config.height / 2;
     this.speedX = -10;
@@ -63,7 +63,7 @@ CANDY.Apple.prototype.updateTransform = function() {
 
 CANDY.Apple.prototype.touched = function(bullet) {
     CANDY.Enemy.prototype.touched.call(this, bullet);
-    CANDY.BossUI.majBar(this.life / 150 * 100);
+    CANDY.BossUI.majBar(this.life / 125 * 100);
 };
 
 CANDY.Apple.prototype.jump = function() {
@@ -71,4 +71,4 @@ CANDY.Apple.prototype.jump = function() {
     if(this.position.y < 200) this.direction = 1;
     else if (this.position.y > 600) this.direction = -1;
     this.accel = true;
-}
+};
