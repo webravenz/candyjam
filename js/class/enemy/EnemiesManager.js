@@ -89,7 +89,7 @@ CANDY.EnemiesManager.prototype.updateTransform = function() {
             // attack
             if(this.timerAttack <= 0) {
                 this.apple.jump();
-                this.timerAttack = CANDY.Utils.randomBetween(180, 360);
+                this.timerAttack = CANDY.Utils.randomBetween(180, 280);
             }
 
             // wave
@@ -110,7 +110,7 @@ CANDY.EnemiesManager.prototype.updateTransform = function() {
                 this.player.canShoot = false;
 
                 setTimeout(function() {
-                    //scope.initLevel2();
+                    scope.initLevel3();
                 }, 5000);
             }
 
@@ -126,20 +126,19 @@ CANDY.EnemiesManager.prototype.updateTransform = function() {
             }
 
             // check death
-//            if(this.apple.dying) {
-//                this.currentLevel = false;
-//                CANDY.BossUI.hide();
-//                // destroy skittles
-//                for(var i = 0; i < this.skittle.length; i++) {
-//                    if(this.skittle[i].active) this.skittle[i].touched({damage: 100});
-//                }
-//
-//                this.player.canShoot = false;
-//
-//                setTimeout(function() {
-//                    //scope.initLevel2();
-//                }, 5000);
-//            }
+            if(this.king.dying) {
+                this.currentLevel = false;
+                CANDY.BossUI.hide();
+                // destroy candies
+                for(var i = 0; i < this.candyShadow.length; i++) {
+                    if(this.candyShadow[i].active) this.candyShadow[i].canRealloc();
+                }
+                for(var i = 0; i < this.candy.length; i++) {
+                    if(this.candy[i].active) this.candy[i].canRealloc();
+                }
+
+                this.player.canShoot = false;
+            }
 
             break;
     }

@@ -60,28 +60,34 @@
     
     home.classList.add('show');
     
-    playBtn.addEventListener('click', function() {
-      playBtn.removeEventListener('click');
-      home.classList.remove('show');
-      CANDY.Controls.stop();
-      player.canShoot = false;
-      initStory();
-    });
+    playBtn.addEventListener('click', clickPlayHome);
     
+  }
+
+  function clickPlayHome() {
+    playBtn.removeEventListener('click', clickPlayHome);
+    home.classList.remove('show');
+    CANDY.Controls.stop();
+    player.canShoot = false;
+    initStory();
+    return false;
   }
   
   function initStory() {
     
     story.classList.add('show');
     
-    playBtnStory.addEventListener('click', function() {
-      playBtnStory.removeEventListener('click');
-      story.classList.remove('show');
-      setTimeout(function() {
-        initGame();
-      }, 1000);
-    });
+    playBtnStory.addEventListener('click', clickPlayStory);
     
+  }
+
+  function clickPlayStory() {
+    playBtnStory.removeEventListener('click', clickPlayStory);
+    story.classList.remove('show');
+    setTimeout(function() {
+      initGame();
+    }, 1000);
+    return false;
   }
   
   function initGame() {
@@ -93,7 +99,7 @@
     CANDY.PlayerUI.show();
     
     setTimeout(function() {
-      enemiesManager.initLevel3();
+      enemiesManager.initLevel1();
     }, 3000);
     
   }
@@ -118,15 +124,17 @@
     setTimeout(function() {
       enemiesManager.removeAll();
       paused = false;
-      retryBtn.addEventListener('click', function() {
-        retryBtn.removeEventListener('click');
-        initGame();
-        gameOver.classList.remove('show');
-        return false;
-      });
+      retryBtn.addEventListener('click', clickRetry);
     }, 2000);
     
     
   };
+
+  function clickRetry() {
+    retryBtn.removeEventListener('click', clickRetry);
+    initGame();
+    gameOver.classList.remove('show');
+    return false;
+  }
   
 })();
