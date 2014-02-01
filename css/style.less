@@ -124,7 +124,13 @@ body, html {
   color: #FFF;
   text-align: right;
   padding: 0 20px;
-  line-height: 44px;
+  line-height: 20px;
+}
+
+@media (-webkit-min-device-pixel-ratio:0) {
+  .life-ui .name {
+    line-height: 44px;
+  }
 }
 
 #player-ui .name {
@@ -246,11 +252,19 @@ body, html {
   font-size: 30px;
   color: #FFF;
   padding: 20px;
-  padding-top: 30px;
+  padding-top: 5px;
+  padding-bottom: 30px;
   border-radius: 100px;
   background: @btnColor;
   text-decoration: none;
   border: 5px solid #FFF;
+}
+
+@media (-webkit-min-device-pixel-ratio:0) {
+  .btn {
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
 }
 
 .btn:hover {

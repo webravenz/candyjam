@@ -90,7 +90,7 @@ CANDY.EnemiesManager.prototype.updateTransform = function() {
             // attack
             if(this.timerAttack <= 0) {
                 this.apple.jump();
-                this.timerAttack = CANDY.Utils.randomBetween(180, 280);
+                this.timerAttack = CANDY.Utils.randomBetween(150, 250);
             }
 
             // wave
@@ -183,7 +183,7 @@ CANDY.EnemiesManager.prototype.initLevel1 = function() {
 };
 
 CANDY.EnemiesManager.prototype.papaSmurfAttack = function() {
-    var nbEnemies = CANDY.Utils.randomBetween(2, 5);
+    var nbEnemies = CANDY.Utils.randomBetween(1, 3);
     while(nbEnemies--) {
         this.magicPool.act(function(e, pool) {
             e.alloc();
@@ -192,7 +192,7 @@ CANDY.EnemiesManager.prototype.papaSmurfAttack = function() {
 };
 
 CANDY.EnemiesManager.prototype.smurfWave = function() {
-    var nbEnemies = CANDY.Utils.randomBetween(4, 8);
+    var nbEnemies = CANDY.Utils.randomBetween(4, 6);
     while(nbEnemies--) {
         this.smurfPool.act(function(e, pool) {
             e.alloc();
