@@ -257,7 +257,7 @@ body, html {
   background: lighten(@btnColor, 10%);
 }
 
-.play.btn {
+.play.btn, .replay.btn {
   position: absolute;
   bottom: 60px;
   left: 50%;
@@ -338,4 +338,22 @@ footer {
 footer a {
   color: #FFF;
   text-decoration: none;
+}
+
+#complete .congrats {
+  font-size: 60px;
+  color: #FFF;
+  padding-top: 200px;
+  text-align: center;
+}
+
+#complete .time {
+  font-size: 24px;
+  color: #FFF;
+  padding-top: 60px;
+  text-align: center;
+  line-height: 2;
+}
+#complete .time span {
+  display: block;
 }

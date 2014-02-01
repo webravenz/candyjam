@@ -14,6 +14,11 @@
   var playBtnStory = document.querySelectorAll('#story .play')[0];
   var gameOver = document.getElementById('game-over');
   var retryBtn = document.querySelectorAll('#game-over .retry')[0];
+  var completeScreen = document.getElementById('complete');
+  var completeTime = document.querySelectorAll('#complete .time span')[0];
+  var replayBtn = document.querySelectorAll('#complete .replay')[0];
+
+  var timeStart;
 
   CANDY.BossUI.init();
   CANDY.PlayerUI.init();
@@ -38,7 +43,7 @@
     player = new CANDY.Player;
 
     // ennemies
-    enemiesManager = new CANDY.EnemiesManager(player);
+    enemiesManager = new CANDY.EnemiesManager(player, gameComplete);
     CANDY.enemiesManager = enemiesManager;
     stage.addChild(enemiesManager);
 
@@ -101,6 +106,9 @@
     setTimeout(function() {
       enemiesManager.initLevel1();
     }, 3000);
+
+    var date = new Date();
+    timeStart = date.getTime();
     
   }
     
@@ -134,6 +142,38 @@
     retryBtn.removeEventListener('click', clickRetry);
     initGame();
     gameOver.classList.remove('show');
+    return false;
+  }
+
+  function gameComplete() {
+    var date = new Date();
+    var timeSpend = date.getTime() - timeStart;
+    var secondes = Math.round(timeSpend / 1000);
+    var minutes = Math.floor(secondes / 60);
+    secondes = secondes % 60;
+
+    var texte = '';
+    if(minutes > 0) {
+      texte += minutes+' minute';
+      if(minutes > 1) texte += 's';
+    }
+    if(minutes > 0 && secondes > 0) texte += ' and ';
+    if(secondes > 0) {
+      texte += ' '+secondes+' second';
+      if(secondes > 1) texte += 's';
+    }
+
+    completeTime.innerHTML = texte;
+
+    completeScreen.classList.add('show');
+
+    replayBtn.addEventListener('click', clickReplay);
+  }
+
+  function clickReplay() {
+    replayBtn.removeEventListener('click', clickReplay);
+    initGame();
+    completeScreen.classList.remove('show');
     return false;
   }
   

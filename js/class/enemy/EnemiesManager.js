@@ -1,7 +1,8 @@
-CANDY.EnemiesManager = function(player) {
+CANDY.EnemiesManager = function(player, callbackEnd) {
     PIXI.DisplayObjectContainer.call( this );
 
     this.player = player;
+    this.callbackEnd = callbackEnd;
     
     this.enemies = [];
 
@@ -137,7 +138,7 @@ CANDY.EnemiesManager.prototype.updateTransform = function() {
                     if(this.candy[i].active) this.candy[i].canRealloc();
                 }
 
-                this.player.canShoot = false;
+                this.callbackEnd();
             }
 
             break;
