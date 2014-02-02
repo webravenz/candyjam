@@ -194,12 +194,21 @@ CANDY.EnemiesManager.prototype.papaSmurfAttack = function() {
 };
 
 CANDY.EnemiesManager.prototype.smurfWave = function() {
+    var scope = this;
     var nbEnemies = CANDY.Utils.randomBetween(4, 6);
+    var n = nbEnemies;
+    var i = 0;
     while(nbEnemies--) {
         this.smurfPool.act(function(e, pool) {
             e.alloc();
+            var ratio = CANDY.Utils.randomBetween(0, 1, true);
+            var part = (CANDY.Config.height - 160) / n;
+            e.position.y = (part * i) + (part * ratio) + 80;
+            scope.addChild(e);
+            i++;
         });
     }
+    scope.addChild(scope.papaSmurf);
 };
 
 CANDY.EnemiesManager.prototype.initLevel2 = function() {

@@ -1,14 +1,13 @@
 
 CANDY.PapaSmurf = function() {
     
-    //var textures = CANDY.SpriteSheetTextures.getArray('e_f', '.png', 6);
+    var textures = CANDY.SpriteSheetTextures.getArray('papasmurf', '.png', 4);
+    CANDY.Enemy.call( this, textures );
     
-    //PIXI.MovieClip.call( this, textures );
+    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, 150, 250);
+    this.animationSpeed = 0.1;
 
-    CANDY.Enemy.call(this, [PIXI.Texture.fromImage('img/papasmurf.png')]);
-    
-    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, this.width, this.height);
-    this.animationSpeed = 0.2;
+    this.hitOffset = {x: 90, y: 90};
 };
 
 CANDY.PapaSmurf.constructor = CANDY.PapaSmurf;
@@ -17,12 +16,14 @@ CANDY.PapaSmurf.prototype = Object.create( CANDY.Enemy.prototype );
 
 CANDY.PapaSmurf.prototype.alloc = function() {
 
+    this.stop();
+
     CANDY.Enemy.prototype.alloc.call(this);
 
     this.life = 100;
     this.position.x = CANDY.Config.width + this.width / 2;
     this.position.y = CANDY.Config.height / 2;
-    this.speedX = -8;
+    this.speedX = -10.5;
     this.speedY = 0;
     this.newGoal();
     this.canMove = false;
@@ -45,6 +46,7 @@ CANDY.PapaSmurf.prototype.updateTransform = function() {
     if(!this.canMove) {
         this.speedY = 0;
     } else {
+        this.play();
         this.speedY += this.goal < this.position.y ? -0.1 : 0.1;
         this.speedY = CANDY.Utils.boundary(this.speedY, -2, 2);
     }

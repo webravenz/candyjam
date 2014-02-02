@@ -31,7 +31,7 @@
 	var background, player, bulletsManager, enemiesManager, collisionManager = null;
     
   // load all needed assets
-  var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png', 'img/papasmurf.png', 'img/smurf.png', 'img/apple.png', 'img/skittle1.png', 'img/skittle2.png', 'img/skittle3.png', 'img/skittle4.png', 'img/candy-shadow.png', 'img/candy.png']);
+  var loader = new PIXI.AssetLoader(['img/player.json', 'img/background.png', 'img/papasmurf.json', 'img/smurf.json', 'img/apple.png', 'img/skittle1.png', 'img/skittle2.png', 'img/skittle3.png', 'img/skittle4.png', 'img/candy-shadow.png', 'img/candy.png', 'img/bolt.json']);
   loader.onComplete = onAssetsLoaded;
 	loader.load();
     

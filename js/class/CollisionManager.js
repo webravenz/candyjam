@@ -17,7 +17,7 @@ CANDY.CollisionManager.prototype.checkCollision= function() {
             var a = bM.length;
             while(a--) { //test with bullet
                 if(bM[a].visible) {
-                    if(eM[i].hitArea && eM[i].hitArea.contain(bM[a].position)) {
+                    if(eM[i].hitArea && !eM[i].cantTouch && eM[i].hitArea.contain(bM[a].position)) {
                         eM[i].touched(bM[a]);
                         bM[a].canRealloc();
                         this.dispatchEvent('ENEMY_TOUCHED');
