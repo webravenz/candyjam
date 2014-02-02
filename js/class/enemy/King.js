@@ -5,11 +5,11 @@ CANDY.King = function() {
     
     //PIXI.MovieClip.call( this, textures );
 
-    CANDY.Enemy.call(this, [PIXI.Texture.fromImage('img/apple.png')]);
+    CANDY.Enemy.call(this, [PIXI.Texture.fromImage('img/king.png')]);
     
-    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, 220, 210);
+    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, 250, 520);
+    this.hitOffset = {x: 160, y: 0};
     this.animationSpeed = 0.2;
-    this.hitOffset = {x: 40, y: 80};
 };
 
 CANDY.King.constructor = CANDY.King;
@@ -23,7 +23,7 @@ CANDY.King.prototype.alloc = function() {
     this.life = 150;
     this.position.x = CANDY.Config.width + this.width / 2;
     this.position.y = CANDY.Config.height / 2;
-    this.speedX = -10;
+    this.speedX = -18;
     this.speedY = 0;
 
     CANDY.BossUI.majBar(100);

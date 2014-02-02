@@ -1,10 +1,10 @@
 
 CANDY.Magic = function() {
     
-    var textures = CANDY.SpriteSheetTextures.getArray('bolt', '.png', 3);
+    var textures = CANDY.SpriteSheetTextures.getArray('bolt', '.png', 2);
     CANDY.Enemy.call( this, textures );
     
-    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, this.width, this.height);
+    this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, 30, this.height);
     this.animationSpeed = 0.2;
     this.poolName = 'magic';
     this.cantTouch = true;

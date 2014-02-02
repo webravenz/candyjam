@@ -21,11 +21,13 @@ CANDY.Controls = {
         var scope = this;
         
         this.keyDownHandler = function(e) {
+            e.preventDefault();
             scope.keyDown(e);
         };
         document.addEventListener('keydown', this.keyDownHandler);
         
         this.keyUpHandler = function(e) {
+            e.preventDefault();
             scope.keyUp(e);
         };
         document.addEventListener('keyup', this.keyUpHandler);

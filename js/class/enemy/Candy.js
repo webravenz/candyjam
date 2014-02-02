@@ -1,7 +1,7 @@
 
 CANDY.Candy = function() {
     
-    CANDY.Enemy.call(this, [PIXI.Texture.fromImage('img/candy.png')]);
+    CANDY.Enemy.call(this, [PIXI.Texture.fromImage('img/candy'+CANDY.Utils.randomBetween(1, 6)+'.png')]);
     
     this.animationSpeed = 0.2;
     this.poolName = 'candy';
