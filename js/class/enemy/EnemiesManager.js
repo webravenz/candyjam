@@ -172,6 +172,7 @@ CANDY.EnemiesManager.prototype.initLevel1 = function() {
     // show bubble
     setTimeout(function() {
         CANDY.BossUI.showBubble('You shall not scroll !');
+        CANDY.Sounds.play('smurf');
     }, 3000);
 
     // hide bubble
@@ -183,6 +184,7 @@ CANDY.EnemiesManager.prototype.initLevel1 = function() {
 };
 
 CANDY.EnemiesManager.prototype.papaSmurfAttack = function() {
+    CANDY.Sounds.play('fire');
     var nbEnemies = CANDY.Utils.randomBetween(1, 3);
     while(nbEnemies--) {
         this.magicPool.act(function(e, pool) {
@@ -221,6 +223,7 @@ CANDY.EnemiesManager.prototype.initLevel2 = function() {
     // show bubble
     setTimeout(function() {
         CANDY.BossUI.showBubble('My revolutionnary Skittles 5S will destroy you !');
+        CANDY.Sounds.play('apple');
     }, 3000);
 
     // hide bubble
@@ -260,6 +263,7 @@ CANDY.EnemiesManager.prototype.initLevel3 = function() {
     // show bubble
     setTimeout(function() {
         CANDY.BossUI.showBubble('Candies ... Candies ... CANDIES everywhere !');
+        CANDY.Sounds.play('king');
     }, 3000);
 
     // hide bubble

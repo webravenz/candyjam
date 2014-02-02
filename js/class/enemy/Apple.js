@@ -67,6 +67,7 @@ CANDY.Apple.prototype.touched = function(bullet) {
 };
 
 CANDY.Apple.prototype.jump = function() {
+    CANDY.Sounds.play('jump');
     this.direction = Math.random() < 0.5 ? -1 : 1;
     if(this.position.y < 200) this.direction = 1;
     else if (this.position.y > 600) this.direction = -1;

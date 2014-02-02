@@ -21,6 +21,7 @@ CANDY.CollisionManager.prototype.checkCollision= function() {
                         eM[i].touched(bM[a]);
                         bM[a].canRealloc();
                         this.dispatchEvent('ENEMY_TOUCHED');
+                        CANDY.Sounds.play('bullet');
                         //console.log('ENEMY TOUCHED');
                     }
                 }
@@ -28,6 +29,7 @@ CANDY.CollisionManager.prototype.checkCollision= function() {
             if(eM[i].hitArea && this.player.visible && this.player.alpha == 1 && eM[i].hitArea.intersectWith(this.player.hitArea)) {
                 eM[i].canRealloc();
                 this.player.hitEnnemy();
+                CANDY.Sounds.play('aie');
                 this.dispatchEvent('TOUCH_ENEMY');
             }
             

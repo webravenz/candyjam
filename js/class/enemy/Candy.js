@@ -17,6 +17,7 @@ CANDY.Candy.prototype.alloc = function(shadow) {
     this.life = 1;
     this.speedX = 0;
     this.speedY = 0;
+    this.fallen = false;
 
     CANDY.Enemy.prototype.alloc.call(this);
     
@@ -35,7 +36,11 @@ CANDY.Candy.prototype.updateTransform = function() {
       this.alpha -= 0.05;
       
       if(this.alpha < 0.2) {
-        this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, 210, 70);
+        if(!this.fallen) {
+          this.fallen = true;
+          this.hitArea = new CANDY.Rectangle(this.position.x, this.position.y, 210, 70);
+          CANDY.Sounds.play('candyfall');
+        }
       } else {
         this.hitArea = false;
       }

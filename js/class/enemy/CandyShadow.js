@@ -22,7 +22,6 @@ CANDY.CandyShadow.prototype.alloc = function(playerPos) {
     this.position.x = CANDY.Utils.randomBetween(this.width / 2, CANDY.Config.width * 0.6);
     this.position.y = CANDY.Utils.randomBetween(this.height / 2 + 50, CANDY.Config.height - this.height);
   }
-  console.log(this.position.x, this.position.y);
   this.life = 1;
   this.speedX = 0;
   this.speedY = 0;

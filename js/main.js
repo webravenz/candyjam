@@ -22,6 +22,7 @@
 
   CANDY.BossUI.init();
   CANDY.PlayerUI.init();
+  CANDY.Sounds.init();
     
 	// create a renderer instance and append the view 
 	var renderer = PIXI.autoDetectRenderer(CANDY.Config.width, CANDY.Config.height);
@@ -104,7 +105,7 @@
     CANDY.PlayerUI.show();
     
     setTimeout(function() {
-      enemiesManager.initLevel3();
+      enemiesManager.initLevel1();
     }, 3000);
 
     var date = new Date();
