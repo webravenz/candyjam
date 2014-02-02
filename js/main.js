@@ -104,7 +104,7 @@
     CANDY.PlayerUI.show();
     
     setTimeout(function() {
-      enemiesManager.initLevel1();
+      enemiesManager.initLevel3();
     }, 3000);
 
     var date = new Date();

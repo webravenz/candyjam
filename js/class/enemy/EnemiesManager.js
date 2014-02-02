@@ -272,7 +272,7 @@ CANDY.EnemiesManager.prototype.initLevel3 = function() {
 CANDY.EnemiesManager.prototype.candyDrop = function() {
   var scope = this;
   this.candyShadowPool.act(function(e, pool) {
-    e.alloc();
+    e.alloc(scope.player.position);
     scope.candyPool.act(function(e2, pool2) {
       e2.alloc(e);
     });
