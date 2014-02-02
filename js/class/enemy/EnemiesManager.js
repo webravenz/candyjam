@@ -185,7 +185,7 @@ CANDY.EnemiesManager.prototype.initLevel1 = function() {
 
 CANDY.EnemiesManager.prototype.papaSmurfAttack = function() {
     CANDY.Sounds.play('fire');
-    var nbEnemies = CANDY.Utils.randomBetween(1, 3);
+    var nbEnemies = CANDY.Utils.randomBetween(2, 3);
     while(nbEnemies--) {
         this.magicPool.act(function(e, pool) {
             e.alloc();
